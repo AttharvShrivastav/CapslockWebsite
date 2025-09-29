@@ -9,12 +9,12 @@ import { SplitText } from 'gsap/SplitText';
 const projects = [
   { 
     title: "valleynxt", service: "ui/ux", image: "/assets/display/ValleyNXT_Display.png",
-    description: "A complete brand overhaul for a disruptive new player in the tech space, focusing on a bold and memorable identity.",
+    description: "A bold new identity and website for a disruptive venture capital firm, designed to reflect ambition, trust, and breakthrough innovation. Capslock delivered a clean digital presence with strong visuals and sharp storytelling, positioning ValleyNXT as a catalyst for India's next-generation startups.",
     // previewImages: ["https://picsum.photos/seed/alpha-1/600/400", "https://picsum.photos/seed/alpha-2/600/400"]
   },
   { 
     title: "evara", service: "ui/ux", image: "/assets/display/Evara Display.png",
-    description: "Developing a multi-platform creative strategy that increased user engagement by 300% in the first quarter.",
+    description: "A sophisticated website for a premium wedding planner, designed to showcase their services with elegance and ease. Capslock focused on a seamless user journey, highlighting Evara's expertise in curating timeless celebrations.",
     // previewImages: ["https://picsum.photos/seed/beta-1/600/400", "https://picsum.photos/seed/beta-2/600/400"]
   },
   { 
@@ -124,10 +124,6 @@ const Projects = () => {
           <div className="shape-rabbet bg-white text-black p-8 w-[400px] shadow-2xl">
             <h3 className="font-display text-3xl mb-3">{hoverData.title}</h3>
             <p className="font-body text-base lowercase text-neutral-600 mb-5">{hoverData.description}</p>
-            <div className="flex gap-3">
-              <div className="w-1/2 h-28 overflow-hidden"><img src={hoverData.previewImages[0]} className="w-full h-full object-cover" alt="" /></div>
-              <div className="w-1/2 h-28 overflow-hidden"><img src={hoverData.previewImages[1]} className="w-full h-full object-cover" alt="" /></div>
-            </div>
           </div>
         )}
       </div>
