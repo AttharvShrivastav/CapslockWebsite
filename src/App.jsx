@@ -8,11 +8,12 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import { TextPlugin } from 'gsap/TextPlugin';
+import { Draggable } from 'gsap/Draggable'
 
 
 import PreLoader from './components/ui/Preloader';
 
-gsap.registerPlugin(ScrollTrigger, SplitText, TextPlugin);
+gsap.registerPlugin(ScrollTrigger, SplitText, TextPlugin, Draggable);
 
 
 
