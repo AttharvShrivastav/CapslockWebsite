@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  --font-display: "Pixelify Sans", system-ui, sans-serif;
+  --font-body: "DM Mono", system-ui, sans-serif;
+
+  --color-accent: #E64725;
+}
+
+body {
+  background-color: #343434;
+}
+body, a, button {
+  cursor: none;
+  
+}
+
+/* src/styles/global.css */
+
+.animate-text-clip {
+    position: relative;
+    color: #4f4f4f; /* The 'unfilled' text color */
+    --clip-value: 100%; /* GSAP will animate this */
+}
+
+
+.animate-text-clip::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff; /* The 'filled' text color */
+    clip-path: inset(0 0 var(--clip-value) 0);
+    will-change: clip-path;
+}
+/* Main cursor element styles */
+.service-item {
+  /* ✅ Increased font size for more impact */
+  @apply font-body text-7xl md:text-7xl font-bold tracking-tighter py-2 text-neutral-700 opacity-40;
+
+}
+
+
+/* Add this class to your global.css file */
+.shape-rabbet {
+  clip-path: polygon(0% 15%, 4% 16%, 4% 0, 96% 0, 96% 15%, 100% 15%, 100% 85%, 96% 85%, 96% 100%, 4% 100%, 4% 85%, 0% 85%);
+}
+
+.service-item.is-active {
+  /* This class will still be used as a marker, but GSAP controls the transition */
+  @apply text-accent opacity-100;
+}
+
+
+
+.cursor-ball {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  /* Center the SVG on the actual mouse position */
+  transform: translate(-50%, -50%);
+  /* Keep the blend mode for the cool inversion effect */
+  mix-blend-mode: difference;
+}
+
+.cursor-svg {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform;
+}
+
+/* Hover state: scale the SVG up */
+.cursor-ball.is-hovering .cursor-svg {
+  /* ✅ Make the cursor scale down to nothing and fade out */
+  transform: scale(0);
+  /* opacity: 0; */
+}
+
+/* Hide the custom cursor on smaller screens or for users who prefer no motion */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  body {
+    cursor: auto; /* Show the default cursor again */
+  }
+  .cursor-ball {
+    display: none;
+  }
+}
+
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Accessibility: Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* In your global.css */
+
+
+/* In global.css, add these new styles for the CTA button */
+
+/* The main button container */
+
+/* In global.css */
+
+/* Replace your existing .cta-button style with this one */
+.cta-button {
+  --rad: 18px;
+  
+  /* ✅ KEY CHANGE: Removed the background, padding, and shadow to make the outer layer invisible. */
+  background: transparent;
+  padding: 0;
+  border: none;
+  position: relative;
+}
+
+/* The inner, darker part of the button */
+.cta-button-cap {
+  display: inline-block;
+  background: linear-gradient(to bottom, #424242, #343434);
+  border-radius: var(--rad);
+  color: #fff;
+  padding: 15px 20px;
+  border: none;
+  border-top: #5b5b5bff solid 1px;
+  border-bottom: #282828ff solid 1px;
+  box-shadow: 0 8px 10px rgb(0 0 0 / 0.3);
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* The text part of the button */
+.cta-button-text {
+  border-radius: 50px;
+  background: linear-gradient(to bottom, #2d2d2dff, #424242);
+  padding: 12px 30px;
+  display: block;
+}
+
+.background-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1; 
+
+  /* ✅ KEY CHANGE: The SVG viewBox is now 120x120, embedding the spacing
+     directly into the repeating tile. The plus-sign path is unchanged.
+  */
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.47363 0.947266H4.31543V2.94727H3.47363V4H0.852539V2.94727H0V0.947266H0.852539V0H3.47363V0.947266Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+  
+  /* background-size is no longer needed as the SVG tile controls the spacing */
+  background-repeat: repeat;
+  
+  pointer-events: none;
+  mix-blend-mode: difference;
+
+  opacity: 0.6;
+
+}
+
+/* In global.css */
+.blinking-cursor {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.pixel-border-box {
+  /* The border-width defines how thick the final border will be. */
+  border-width: 12px;
+  border-style: solid;
+
+  /* This tells the browser to use our custom SVG for the border. */
+  border-image-source: url("data:image/svg+xml,%3Csvg width='9' height='9' viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H3V3H0V0Z' fill='%23D9D9D9'/%3E%3Cpath d='M3 0H6V3H3V0Z' fill='%23D9D9D9'/%3E%3Cpath d='M6 0H9V3H6V0Z' fill='%23D9D9D9'/%3E%3Cpath d='M0 3H3V6H0V3Z' fill='%23D9D9D9'/%3E%3Cpath d='M3 3H6V6H3V3Z' fill='%23D9D9D9'/%3E%3Cpath d='M6 3H9V6H6V3Z' fill='%23D9D9D9'/%3E%3Cpath d='M0 6H3V9H0V6Z' fill='%23D9D9D9'/%3E%3Cpath d='M3 6H6V9H3V6Z' fill='%23D9D9D9'/%3E%3Cpath d='M6 6H9V9H6V6Z' fill='%23D9D9D9'/%3E%3Cpath d='M0 3V0H3V3H0ZM0 6V3H3V6H0ZM3 6V3H6V6H3Z' fill='black'/%3E%3Cpath d='M3 0H6V3H3V0ZM6 3V0H9V3H6ZM6 6V3H9V6H6Z' fill='black'/%3E%3Cpath d='M0 6H3V9H0V6ZM3 9V6H6V9H3ZM6 9V6H9V9H6Z' fill='black'/%3E%3C/svg%3E");
+  
+  /* This slices our 9x9 SVG into 3px sections. The 'fill' keyword makes
+     the center slice act as the background color.
+  */
+  border-image-slice: 3 fill;
+
+  /* This tells the browser how to repeat the pattern. 'round' creates
+     a perfect pixelated repeat without distortion.
+  */
+  border-image-repeat: round;
+  
+  background-color: transparent;
+}
