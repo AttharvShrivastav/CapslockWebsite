@@ -19,12 +19,12 @@ const projects = [
   },
   { 
     title: "sultan alnuaimi", service: "ui/ux", image: "/assets/display/Sultan Display.png",
-    description: "Revitalizing a legacy brand's digital presence with a modern UI/UX and a cutting-edge development stack.",
+    description: "A modern website for an AI solutions company, designed to communicate innovation, intelligence, and trust. Capslock created a clean, future-focused digital experience that positions Sultan Alnuaimi as a leader in smart technologies.",
     // previewImages: ["https://picsum.photos/seed/gamma-1/600/400", "https://picsum.photos/seed/gamma-2/600/400"]
   },
   { 
     title: "emilio beaufort", service: "ui/ux", image: "/assets/display/Emilio Beaufort.png",
-    description: "Crafting a unique visual identity system that translated seamlessly from print to digital platforms.",
+    description: "A professional website for a premium hair extension supplier, designed to showcase product quality and build trust with salons, distributors, and industry partners. Capslock crafted a polished digital presence that reflects reliability and luxury in the B2B space.",
     // previewImages: ["https://picsum.photos/seed/delta-1/600/400", "https://picsum.photos/seed/delta-2/600/400"]
   },
 ];
@@ -102,7 +102,7 @@ const Projects = () => {
                 {/* Text is now absolutely positioned at the bottom */}
                 <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/60 via-black/40 to-transparent text-white">
                   <h3 className="font-display text-2xl">{project.title}</h3>
-                  <p className="font-body text-xs uppercase tracking-widest">{project.service}</p>
+                  <p className="font-body text-xs lowercase tracking-widest">{project.service}</p>
                 </div>
               </div>
             ))}
