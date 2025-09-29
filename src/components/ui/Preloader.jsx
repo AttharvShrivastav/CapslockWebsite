@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const Preloader = ({ setIsLoading }) => {
+const PreLoader = ({ setIsLoading }) => {
   const containerRef = useRef(null);
   const hasExited = useRef(false);
 
@@ -93,4 +93,4 @@ const Preloader = ({ setIsLoading }) => {
   );
 };
 
-export default Preloader;
+export default PreLoader;
