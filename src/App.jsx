@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-      {isClient && isLoading && <Preloader setIsLoading={setIsLoading} />}
+      {isClient && isLoading && <PreLoader setIsLoading={setIsLoading} />}
       {isClient && !isLoading && <MainSite />}
     </>
   );
