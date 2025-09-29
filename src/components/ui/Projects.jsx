@@ -8,24 +8,24 @@ import { SplitText } from 'gsap/SplitText';
 
 const projects = [
   { 
-    title: "ValleyNXT", service: "Brand Elevation", image: "/assets/display/ValleyNXT_Display.png",
+    title: "valleynxt", service: "ui/ux", image: "/assets/display/ValleyNXT_Display.png",
     description: "A complete brand overhaul for a disruptive new player in the tech space, focusing on a bold and memorable identity.",
-    previewImages: ["https://picsum.photos/seed/alpha-1/600/400", "https://picsum.photos/seed/alpha-2/600/400"]
+    // previewImages: ["https://picsum.photos/seed/alpha-1/600/400", "https://picsum.photos/seed/alpha-2/600/400"]
   },
   { 
-    title: "Evara", service: "Creative Strategy", image: "/assets/display/Evara Display.png",
+    title: "evara", service: "ui/ux", image: "/assets/display/Evara Display.png",
     description: "Developing a multi-platform creative strategy that increased user engagement by 300% in the first quarter.",
-    previewImages: ["https://picsum.photos/seed/beta-1/600/400", "https://picsum.photos/seed/beta-2/600/400"]
+    // previewImages: ["https://picsum.photos/seed/beta-1/600/400", "https://picsum.photos/seed/beta-2/600/400"]
   },
   { 
-    title: "Sultan's Dine", service: "Digital Revival", image: "/assets/display/Sultan Display.png",
+    title: "sultan alnuaimi", service: "ui/ux", image: "/assets/display/Sultan Display.png",
     description: "Revitalizing a legacy brand's digital presence with a modern UI/UX and a cutting-edge development stack.",
-    previewImages: ["https://picsum.photos/seed/gamma-1/600/400", "https://picsum.photos/seed/gamma-2/600/400"]
+    // previewImages: ["https://picsum.photos/seed/gamma-1/600/400", "https://picsum.photos/seed/gamma-2/600/400"]
   },
   { 
-    title: "Emilio Beaufort", service: "Visual Identity", image: "/assets/display/Emilio Beaufort.png",
+    title: "emilio beaufort", service: "ui/ux", image: "/assets/display/Emilio Beaufort.png",
     description: "Crafting a unique visual identity system that translated seamlessly from print to digital platforms.",
-    previewImages: ["https://picsum.photos/seed/delta-1/600/400", "https://picsum.photos/seed/delta-2/600/400"]
+    // previewImages: ["https://picsum.photos/seed/delta-1/600/400", "https://picsum.photos/seed/delta-2/600/400"]
   },
 ];
 
@@ -123,7 +123,7 @@ const Projects = () => {
         {hoverData && (
           <div className="shape-rabbet bg-white text-black p-8 w-[400px] shadow-2xl">
             <h3 className="font-display text-3xl mb-3">{hoverData.title}</h3>
-            <p className="font-body text-base text-neutral-600 mb-5">{hoverData.description}</p>
+            <p className="font-body text-base lowercase text-neutral-600 mb-5">{hoverData.description}</p>
             <div className="flex gap-3">
               <div className="w-1/2 h-28 overflow-hidden"><img src={hoverData.previewImages[0]} className="w-full h-full object-cover" alt="" /></div>
               <div className="w-1/2 h-28 overflow-hidden"><img src={hoverData.previewImages[1]} className="w-full h-full object-cover" alt="" /></div>
