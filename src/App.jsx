@@ -1,6 +1,5 @@
 // src/App.jsx
 import React, { useState } from 'react';
-
 import MainSite from './components/layout/MainSite';
 
 // All GSAP plugins are now registered here
@@ -8,16 +7,14 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import { TextPlugin } from 'gsap/TextPlugin';
-import { Draggable } from 'gsap/Draggable'
-
+import { Draggable } from 'gsap/Draggable';
 
 import PreLoader from './components/ui/Preloader';
 
 gsap.registerPlugin(ScrollTrigger, SplitText, TextPlugin, Draggable);
 
-
-
 function App() {
+  // FIX: Removed the extra '=' which was causing a syntax error
   const [isLoading, setIsLoading] = useState(true);
 
   // This check prevents the main site from rendering on the server

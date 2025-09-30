@@ -10,6 +10,9 @@ import HomePage from '../../pages/HomePage';
 import PreFooterCTA from '../ui/PreFooterCTA';
 import HoverPreview from '../ui/HoverPreview';
 
+
+import { Draggable } from 'gsap/Draggable';
+
 const MainSite = () => {
   const siteContainerRef = useRef(null);
   useLenis();

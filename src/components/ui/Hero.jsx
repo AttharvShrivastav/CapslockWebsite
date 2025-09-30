@@ -84,7 +84,7 @@ const Hero = () => {
 
       <div className="w-full flex justify-between items-end gap-8">
         <div className="hero-text-content mx-24 max-w-md parallax-mouse-soft">
-          <h2 className="reveal-text-chars text-4xl font-display font-medium mb-2">welcome</h2>
+          <h2 className="reveal-text-chars text-left text-4xl font-display font-medium mb-2">welcome</h2>
           <hr className="w-42 border-white mb-4" />
           <p className="reveal-text-chars text-base font-body text-neutral-300 mb-4">
             no lowercase ambition.<br /> capslock is a creative studio for brands with taste and trajectory. we pair conversion-first strategy with design-to-dev craft that just works.

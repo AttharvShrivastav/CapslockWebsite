@@ -33,11 +33,11 @@ const PreLoader = ({ setIsLoading }) => {
       .to(".preloader-text-4", { duration: 0.1, text: "> ", ease: "none" })
       .to(".preloader-text-4", { duration: 1.2, text: "> loading cpslck.com", ease: "none" })
       .to(".preloader-text-5", { duration: 0.8, text: "SYSTEM READY.", ease: "none" }, "+=0.3")
-      .to(".preloader-text-6", { duration: 1.0, text: "(Press Caps Lock to enter)", ease: "none", delay: 0.5 });
-      // Removed the automatic exit timer
+      .to(".preloader-text-6", { duration: 1.0, text: "(Press Caps Lock to enter)", ease: "none", delay: 0.5 })
+      // ✅ FIX: Animate the mobile button into view at the end
+      .to("#mobile-enter-wrapper", { autoAlpha: 1, duration: 0.5 }, "-=0.5");
 
     const handleKeyDown = (event) => {
-      // ✅ KEY CHANGE: Now listens for "CapsLock" OR "Meta"
       if (event.key === 'CapsLock' || event.code === 'CapsLock' || event.key === 'Meta') {
         exitPreloader();
       }
@@ -78,7 +78,8 @@ const PreLoader = ({ setIsLoading }) => {
         
         <div className="mt-8">
             <p className="preloader-text-6 text-neutral-500">&nbsp;</p>
-            <div className="mt-8 md:hidden">
+            {/* ✅ FIX: Added a wrapper div with an ID and set it to be initially invisible */}
+            <div id="mobile-enter-wrapper" className="mt-8 md:hidden invisible">
                 <button id="mobile-enter-button" className="cta-button">
                     <span className="cta-button-preload">
                         <span className="cta-button-text font-display text-2xl">
