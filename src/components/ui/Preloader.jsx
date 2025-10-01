@@ -115,7 +115,7 @@ const PreLoader = ({ setIsLoading }) => {
                   className="bg-green-400 text-black font-display text-2xl uppercase py-3 px-8 transition-colors duration-300 hover:bg-white"
                   aria-label="Enter Website"
                 >
-                  Enter
+                  Capslock
                 </button>
             </div>
         </div>
