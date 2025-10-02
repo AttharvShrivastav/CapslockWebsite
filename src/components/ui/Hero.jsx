@@ -11,7 +11,6 @@ const Hero = () => {
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      // --- INTRO TIMELINE ---
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.2 });
       
       tl.from(".hero-logo", { 
@@ -41,10 +40,8 @@ const Hero = () => {
         }, "-=0.8");
       });
 
-      // --- RESPONSIVE ANIMATIONS ---
       let mm = gsap.matchMedia();
 
-      // --- Desktop-Only Animations (screen width >= 1024px) ---
       mm.add("(min-width: 1024px)", () => {
         const handleMouseMove = (e) => {
           const { clientX, clientY } = e;
@@ -62,13 +59,11 @@ const Hero = () => {
         return () => window.removeEventListener('mousemove', handleMouseMove);
       });
 
-      // --- Tablet & Mobile Animations (screen width < 1024px) ---
       mm.add("(max-width: 1023px)", () => {
         gsap.to(".hero-logo-container", { scrollTrigger: { trigger: containerRef.current, start: "top top", scrub: 2 }, y: -100, ease: 'none' });
         gsap.to(".hero-text-content", { scrollTrigger: { trigger: containerRef.current, start: "top top", scrub: 2 }, y: -50, ease: 'none' });
         gsap.to(".keyboard-container", { scrollTrigger: { trigger: containerRef.current, start: "top top", scrub: 2 }, y: -75, ease: 'none' });
       });
-
     }, containerRef);
 
     return () => ctx.revert();
@@ -91,7 +86,7 @@ const Hero = () => {
         <div className="hero-text-content max-w-md lg:mx-24 parallax-mouse-soft">
           <h2 className="reveal-text-chars text-3xl md:text-4xl font-display font-medium mb-2">welcome</h2>
           <hr className="w-42 border-white mb-4" />
-          <p className="reveal-text-chars text-base font-body text-neutral-300 mb-4 hyphens-none">
+          <p className="reveal-text-chars text-base font-body text-neutral-300 mb-4 break-words">
             no lowercase ambition.<br /> capslock is a creative studio for brands with taste and trajectory. we pair conversion-first strategy with design-to-dev craft that just works.
           </p>
           <p className="reveal-text-chars font-body text-neutral-500">

@@ -11,7 +11,6 @@ const About = () => {
 
   useGSAP(() => {
     const profileBlocks = gsap.utils.toArray('.profile-block');
-
     profileBlocks.forEach(block => {
       const textElements = block.querySelectorAll('.reveal-text');
       const imageElement = block.querySelector('.reveal-image');
@@ -25,18 +24,17 @@ const About = () => {
         }
       });
 
-      // ✅ REFINED: Reverted to the masked text reveal animation.
       textElements.forEach(el => {
         const splitParent = new SplitText(el, { type: "lines", linesClass: "line-parent" });
-        const splitChild = new SplitText(el, { type: "words" });
+        const splitChild = new SplitText(el, { type: "chars" });
         
         gsap.set(splitParent.lines, { overflow: 'hidden' });
         
-        tl.from(splitChild.words, {
+        tl.from(splitChild.chars, {
           duration: 0.8,
           ease: 'power2.out',
           yPercent: 100,
-          stagger: 0.01,
+          stagger: 0.02,
         }, 0);
       });
 
@@ -47,7 +45,6 @@ const About = () => {
           .to(image, { scale: 1, duration: 1.2, ease: 'power3.out' }, 0.2);
       }
     });
-
   }, { scope: containerRef });
 
   return (
@@ -58,16 +55,13 @@ const About = () => {
     >
       <div className="mx-auto max-w-7xl w-full">
         <div className="mb-16 md:mb-24">
-          <h2 className="font-display text-4xl md:text-5xl">
-            about us
-            <span className="text-accent">.</span>
-          </h2>
+          <h2 className="font-display text-4xl md:text-5xl">about us<span className="text-accent">.</span></h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-16">
           <div className="md:col-span-2 flex flex-col justify-end">
             <div>
-              <p className="reveal-text font-body text-base text-neutral-600 leading-relaxed max-w-md">
+              <p className="reveal-text font-body text-base text-neutral-600 leading-relaxed max-w-md break-words">
                 <span className='text-accent'>capslock</span> began as a simple name for a different idea. but the intent was always the same. it grew with us from a word into a vessel for all things creative.
               </p>
             </div>
@@ -75,12 +69,10 @@ const About = () => {
 
           <div className="md:col-span-3">
             <div className="flex flex-col md:flex-row gap-12 md:gap-8 md:items-end md:justify-end">
-              
               <div className="profile-block w-[90%] md:w-full max-w-xs mr-auto md:mr-0">
-                <p className="reveal-text font-body text-base text-neutral-700 leading-relaxed text-justify hyphens-auto">
+                <p className="reveal-text font-body text-base text-neutral-700 leading-relaxed break-words">
                   the architect of the brand. he focuses on the narrative, the aesthetic, and the simple human truth that makes an idea connect.
                 </p>
-                {/* ✅ REFINED: Added whitespace-nowrap to prevent line breaks on mobile. */}
                 <p className="reveal-text font-body text-base text-neutral-800 mt-2 md:hidden whitespace-nowrap">samanyu jain</p>
                 <div className="reveal-image w-full aspect-[3/4] invisible my-6">
                   <img src={imageSamanyu} alt="Samanyu Jain" className="w-full h-full object-cover" />
@@ -89,17 +81,15 @@ const About = () => {
               </div>
               
               <div className="profile-block w-[90%] md:w-full max-w-xs ml-auto md:ml-0 md:text-right">
-                <p className="reveal-text font-body text-base text-neutral-700 leading-relaxed text-justify md:text-right hyphens-auto">
+                <p className="reveal-text font-body text-base text-neutral-700 leading-relaxed md:text-right break-words">
                   the architect of the build. he translates vision into flawless code, ensuring the experience feels as good as it looks.
                 </p>
-                {/* ✅ REFINED: Added whitespace-nowrap to prevent line breaks on mobile. */}
                 <p className="reveal-text font-body text-base text-neutral-800 mt-2 md:hidden whitespace-nowrap">attharv shrivastav</p>
                 <div className="reveal-image w-full aspect-[3/4] invisible my-6">
                   <img src={imageAtharv} alt="Atharv Shrivastav" className="w-full h-full object-cover" />
                 </div>
                 <p className="reveal-text font-body text-base text-neutral-800 hidden md:block md:self-end whitespace-nowrap">attharv shrivastav</p>
               </div>
-
             </div>
           </div>
         </div>
