@@ -5,81 +5,67 @@ import { useGSAP } from '@gsap/react';
 const PreLoader = ({ setIsLoading }) => {
   const containerRef = useRef(null);
   const mobileButtonRef = useRef(null);
-  
-  // ✅ ADDED: Refs to manage the exit state and the auto-exit timer
   const hasExited = useRef(false);
-  const autoExitTimer = useRef(null);
 
   useGSAP(() => {
-    // --- Exit Animation Logic ---
-    // A single, reusable function to handle the exit sequence.
+    // Create a Promise that resolves when the timeline animation is complete
+    const animationPromise = new Promise(resolve => {
+      const tl = gsap.timeline({ onComplete: resolve });
+
+      tl.to(".preloader-text-1", { duration: 1.2, text: "CAPSLOCK SYSTEMS DEBUG ROM V1.0", ease: "none" })
+        .to(".preloader-text-2", { duration: 0.8, text: "MEMORY CHECK...", ease: "none" }, "-=0.5")
+        .to(".preloader-text-3", { duration: 0.8, text: "1024KB RAM OK", ease: "none" })
+        .to(".preloader-text-4", { duration: 0.1, text: "> ", ease: "none" })
+        .to(".preloader-text-4", { duration: 1.2, text: "> loading cpslck.com", ease: "none" })
+        .to(".preloader-text-5", { duration: 0.8, text: "SYSTEM READY.", ease: "none" }, "+=0.3")
+        .to(".preloader-text-6", { duration: 1.0, text: "(Press Caps Lock to enter)", ease: "none", delay: 0.5 })
+        .to(mobileButtonRef.current, { autoAlpha: 1, duration: 0.5 }, "-=0.5");
+    });
+
     const exitPreloader = () => {
-      // Prevent this from running more than once
       if (hasExited.current) return;
       hasExited.current = true;
       
-      // ✅ ADDED: Kill the auto-exit timer if the user exits manually
-      if (autoExitTimer.current) {
-        autoExitTimer.current.kill();
-      }
-      
-      // Stop the intro timeline if it's still running
-      tl.kill();
-
-      // Fade out the preloader
       gsap.to(containerRef.current, {
         opacity: 0,
         duration: 1.0,
         ease: "power2.inOut",
         onComplete: () => {
           gsap.set(containerRef.current, { display: "none" });
-          setIsLoading(false); // Update the state in App.jsx
+          setIsLoading(false);
         }
       });
     };
 
-    // --- Intro Animation Timeline ---
-    const tl = gsap.timeline({
-        // ✅ ADDED: onComplete callback to start the 2-second auto-exit timer
-        onComplete: () => {
-            autoExitTimer.current = gsap.delayedCall(2, exitPreloader);
-        }
+    // Wait for both animation and fonts to be ready before auto-exiting
+    Promise.all([animationPromise, document.fonts.ready]).then(() => {
+      exitPreloader();
     });
 
-    tl.to(".preloader-text-1", { duration: 1.2, text: "CAPSLOCK SYSTEMS DEBUG ROM V1.0", ease: "none" })
-      .to(".preloader-text-2", { duration: 0.8, text: "MEMORY CHECK...", ease: "none" }, "-=0.5")
-      .to(".preloader-text-3", { duration: 0.8, text: "1024KB RAM OK", ease: "none" })
-      .to(".preloader-text-4", { duration: 0.1, text: "> ", ease: "none" })
-      .to(".preloader-text-4", { duration: 1.2, text: "> loading cpslck.com", ease: "none" })
-      .to(".preloader-text-5", { duration: 0.8, text: "SYSTEM READY.", ease: "none" }, "+=0.3")
-      .to(".preloader-text-6", { duration: 1.0, text: "(Press Caps Lock to enter)", ease: "none", delay: 0.5 })
-      .to(mobileButtonRef.current, { autoAlpha: 1, duration: 0.5 }, "-=0.5");
-
-    // --- Event Listeners ---
-    const handleKeyDown = (event) => {
-      // Use event.code for better consistency across keyboards
-      if (event.code === 'CapsLock' || event.key === 'Meta') { // Meta key for Mac users
+    // Event Listeners for manual exit
+    const handleManualExit = () => {
+      // Still wait for fonts before finishing, even on manual exit.
+      document.fonts.ready.then(() => {
         exitPreloader();
-      }
+      });
     };
 
+    const handleKeyDown = (event) => {
+      if (event.code === 'CapsLock' || event.key === 'Meta') {
+        handleManualExit();
+      }
+    };
     window.addEventListener('keydown', handleKeyDown);
     
-    // Using the ref for the button
     const mobileButton = mobileButtonRef.current;
     if (mobileButton) {
-        mobileButton.addEventListener('click', exitPreloader);
+        mobileButton.addEventListener('click', handleManualExit);
     }
 
-    // --- Cleanup Function ---
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       if (mobileButton) {
-          mobileButton.removeEventListener('click', exitPreloader);
-      }
-      // ✅ ADDED: Ensure the timer is killed if the component unmounts
-      if (autoExitTimer.current) {
-        autoExitTimer.current.kill();
+          mobileButton.removeEventListener('click', handleManualExit);
       }
     };
   }, { scope: containerRef });
@@ -106,16 +92,13 @@ const PreLoader = ({ setIsLoading }) => {
         </div>
         
         <div className="mt-8 text-center">
-            {/* ✅ CHANGED: This text now ONLY appears on desktop screens (1024px and up) */}
             <p className="preloader-text-6 text-neutral-500 hidden lg:block min-h-[1.5em]">&nbsp;</p>
-            
-            {/* ✅ CHANGED: This button now appears on mobile AND tablet (< 1024px) */}
             <div ref={mobileButtonRef} className="mt-4 lg:hidden invisible">
                 <button 
                   className="bg-green-400 text-black font-display text-2xl uppercase py-3 px-8 transition-colors duration-300 hover:bg-white"
                   aria-label="Enter Website"
                 >
-                  Capslock
+                  Enter
                 </button>
             </div>
         </div>

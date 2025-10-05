@@ -1,4 +1,3 @@
-// src/components/layout/MainSite.jsx
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -9,9 +8,6 @@ import Header from './Header';
 import HomePage from '../../pages/HomePage';
 import PreFooterCTA from '../ui/PreFooterCTA';
 import HoverPreview from '../ui/HoverPreview';
-
-
-import { Draggable } from 'gsap/Draggable';
 
 const MainSite = () => {
   const siteContainerRef = useRef(null);
@@ -28,7 +24,6 @@ const MainSite = () => {
 
   return (
     <div ref={siteContainerRef}>
-
       <Cursor />
       <HoverPreview />
       <PatternOverlay />
