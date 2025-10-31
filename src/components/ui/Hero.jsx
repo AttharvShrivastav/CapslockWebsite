@@ -29,7 +29,7 @@ const Hero = () => {
       const textElements = gsap.utils.toArray('.reveal-text-chars');
       textElements.forEach(el => {
         const splitParent = new SplitText(el, { type: "lines", linesClass: "line-parent" });
-        const splitChild = new SplitText(el, { type: "chars", linesClass: "line-child" });
+        const splitChild = new SplitText(el, { type: "words", linesClass: "line-child", smartWrap: "true" });
         gsap.set(splitParent.lines, { overflow: 'hidden' });
         tl.from(splitChild.chars, {
           yPercent: 100,
