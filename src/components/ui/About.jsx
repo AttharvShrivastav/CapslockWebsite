@@ -26,11 +26,11 @@ const About = () => {
 
       textElements.forEach(el => {
         const splitParent = new SplitText(el, { type: "lines", linesClass: "line-parent" });
-        const splitChild = new SplitText(el, { type: "chars" });
+        const splitChild = new SplitText(el, { type: "words" });
         
         gsap.set(splitParent.lines, { overflow: 'hidden' });
         
-        tl.from(splitChild.chars, {
+        tl.from(splitChild.words, {
           duration: 0.8,
           ease: 'power2.out',
           yPercent: 100,

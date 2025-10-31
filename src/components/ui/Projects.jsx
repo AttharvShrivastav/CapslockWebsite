@@ -118,10 +118,10 @@ const Projects = () => {
       <section 
         ref={containerRef} 
         id="work" 
-        className="h-screen bg-[#D9D9D9] text-black flex flex-col justify-center items-start px-5 overflow-hidden"
+        className="h-screen bg-[#D9D9D9] pt-12 text-black flex flex-col justify-center items-start px-5 overflow-hidden"
       >
         <div className="w-full font-display h-[60vh] flex items-center">
-          <div ref={trackRef} className="h-full flex items-center gap-6 px-6">
+          <div ref={trackRef} className="h-full flex items-center gap-6 p-6">
             {projects.map((project, index) => (
               <div 
                 key={index} 
