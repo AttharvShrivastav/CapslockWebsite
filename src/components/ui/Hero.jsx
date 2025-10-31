@@ -31,7 +31,7 @@ const Hero = () => {
         const splitParent = new SplitText(el, { type: "lines", linesClass: "line-parent" });
         const splitChild = new SplitText(el, { type: "words", linesClass: "line-child", smartWrap: "true" });
         gsap.set(splitParent.lines, { overflow: 'hidden' });
-        tl.from(splitChild.chars, {
+        tl.from(splitChild.words, {
           yPercent: 100,
           opacity: 0,
           stagger: 0.005,
