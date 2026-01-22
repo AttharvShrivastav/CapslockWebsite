@@ -19,11 +19,10 @@ const FinalCTA = () => {
       },
     });
 
-    // Animate the wrapper from a small, centered bar to a full-width bar
     tl.fromTo(ctaWrapperRef.current, 
       { 
-        width: 'clamp(320px, 90%, 384px)', // Starts at the same size as the old header (max-w-sm)
-        borderRadius: '27px', // Matches the pixel-border-box radius
+        width: 'clamp(320px, 90%, 384px)', 
+        borderRadius: '27px', 
       },
       { 
         width: '100%', 
